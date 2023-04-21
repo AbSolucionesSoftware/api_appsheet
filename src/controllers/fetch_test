@@ -1,0 +1,49 @@
+/* 
+await fetch(
+      `https://api.appsheet.com/api/v2/apps/868ec1f-8932-4246-8d96-d687d4c2fd1e/tables/${id_table}/Action`,
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          applicationAccessKey:
+            "V2-XrTJx-LRE2Z-6qu5Q-1KaN0-Q4Jn3-gLZH0-q0lBW-IspMc",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Action: "Add",
+          Properties: {
+            Locale: "en-US",
+            Location: "47.623098, -122.330184",
+            Timezone: "Pacific Standard Time",
+            UserSettings: {
+              "Option 1": "value1",
+              "Option 2": "value2",
+            },
+          },
+          Rows: [
+            {
+              FirstName: "Jan",
+              LastName: "Jones",
+              Age: 33,
+              Department: "Accounting",
+              Street: "110 Beach Blvd",
+              City: "Newport Beach",
+              State: "CA",
+              Zip: 92661,
+              "Home Phone": 4257868765,
+              Fax: 4253214432,
+              "Date Hired": "10/31/2014",
+              Arrived: "8:15:25",
+              Departed: "18:30:33",
+              "Last Review": "08/31/2017 23:59:59",
+              Rating: 0.995,
+              Salary: 3333.45,
+              Image:
+                "http://images6.fanpop.com/image/photos/36300000/Emilia-Clarke-image-emilia-clarke-36399128-460-276.jpg",
+            },
+          ],
+        }),
+      }
+    )
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err)); */

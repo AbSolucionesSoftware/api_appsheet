@@ -11,6 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 //rutes
-app.use('/api/test',require('./routes/Test'));
+app.use('/api/product',require('./routes/Appsheet'));
 
 module.exports = app;
