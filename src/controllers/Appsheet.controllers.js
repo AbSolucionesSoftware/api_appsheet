@@ -7,7 +7,7 @@ const stripe = Stripe(process.env.LLAVE_SECRETA_STRIPE);
 payCtrl.createProduct = async (req, res) => {
   try {
     const { name, amount, currency } = req.body;
-    console.log(name);
+    console.log(req.body);
     if(!name || !amount || !currency) throw new Error("Faltan campos obligatorios");
     const product = await stripe.products.create({
       name,
@@ -16,6 +16,9 @@ payCtrl.createProduct = async (req, res) => {
         currency,
       },
     });
+    //fecha y hora
+    //creador
+
     res.status(200).json({ data: product });
   } catch (error) {
     res.status(505).json({ message: "Error del servidor", error });
