@@ -8,20 +8,31 @@ payCtrl.createProduct = async (req, res) => {
   try {
     const { name, amount, currency } = req.body;
     console.log(req.body);
-    if(!name || !amount || !currency) throw new Error("Faltan campos obligatorios");
-    const product = await stripe.products.create({
+    if (!name || !amount || !currency) {
+      res
+        .status(400)
+        .json({
+          error: true,
+          message: "Faltan campos obligatorios",
+          data: null,
+        });
+    }
+    const item_stripe = await stripe.products.create({
       name,
       default_price_data: {
         unit_amount: Math.round(100 * parseFloat(amount)),
         currency,
       },
     });
-    //fecha y hora
-    //creador
+    const data = {
+      item_stripe,
+      fecha: moment().tz("America/Mexico_City").format(),
+      user: "Diego Leon"
+    }
 
-    res.status(200).json({ data: product });
+    res.status(200).json({ data, error: false, message: "Success" });
   } catch (error) {
-    res.status(505).json({ message: "Error del servidor", error });
+    res.status(505).json({ message: error.message, error: true, data: null });
     console.log(error);
   }
 };

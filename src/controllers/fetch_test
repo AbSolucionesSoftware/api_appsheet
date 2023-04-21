@@ -1,49 +1,76 @@
-/* 
-await fetch(
-      `https://api.appsheet.com/api/v2/apps/868ec1f-8932-4246-8d96-d687d4c2fd1e/tables/${id_table}/Action`,
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          applicationAccessKey:
-            "V2-XrTJx-LRE2Z-6qu5Q-1KaN0-Q4Jn3-gLZH0-q0lBW-IspMc",
-          "Content-Type": "application/json",
+/* await fetch(
+  `https://api.appsheet.com/api/v2/apps/868ec1f-8932-4246-8d96-d687d4c2fd1e/tables/Areas/Action`,
+  {
+    method: "POST",
+    headers: {
+      applicationAccessKey:
+        "V2-XrTJx-LRE2Z-6qu5Q-1KaN0-Q4Jn3-gLZH0-q0lBW-IspMc",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      Action: "Add",
+      Properties: {
+        Locale: "en-US",
+        Location: "47.623098, -122.330184",
+        Timezone: "Pacific Standard Time",
+        
+      },
+      Rows: [
+        {
+          ID: "jf8sd8f3h3h73h8",
+          Area: "DESARROLLO",
         },
-        body: JSON.stringify({
-          Action: "Add",
-          Properties: {
-            Locale: "en-US",
-            Location: "47.623098, -122.330184",
-            Timezone: "Pacific Standard Time",
-            UserSettings: {
-              "Option 1": "value1",
-              "Option 2": "value2",
-            },
-          },
-          Rows: [
-            {
-              FirstName: "Jan",
-              LastName: "Jones",
-              Age: 33,
-              Department: "Accounting",
-              Street: "110 Beach Blvd",
-              City: "Newport Beach",
-              State: "CA",
-              Zip: 92661,
-              "Home Phone": 4257868765,
-              Fax: 4253214432,
-              "Date Hired": "10/31/2014",
-              Arrived: "8:15:25",
-              Departed: "18:30:33",
-              "Last Review": "08/31/2017 23:59:59",
-              Rating: 0.995,
-              Salary: 3333.45,
-              Image:
-                "http://images6.fanpop.com/image/photos/36300000/Emilia-Clarke-image-emilia-clarke-36399128-460-276.jpg",
-            },
-          ],
-        }),
-      }
-    )
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err)); */
+      ],
+    }),
+  }
+)
+  .then((response) => res.status(200).json({ data: response }))
+  .catch((err) => console.log(err)); */
+
+/*   const payCtrl = {};
+const Stripe = require("stripe");
+const fetch = require("node-fetch");
+const moment = require("moment-timezone");
+const stripe = Stripe(process.env.LLAVE_SECRETA_STRIPE);
+
+payCtrl.createProduct = async (req, res) => {
+  try {
+    const { name, amount, currency } = req.body;
+    console.log(req.body);
+    if (!name || !amount || !currency)
+      throw new Error("Faltan campos obligatorios");
+    const product = await stripe.products.create({
+      name,
+      default_price_data: {
+        unit_amount: Math.round(100 * parseFloat(amount)),
+        currency,
+      },
+    });
+    const sheets = await authorize(credentials);
+
+    const spreadsheetId = "<SPREADSHEET_ID>"; // Reemplaza con el ID de la hoja de cálculo
+    const range = "<TABLE_NAME>"; // Reemplaza con el nombre de la tabla
+    const values = [
+      // Reemplaza con los datos que quieras insertar en la tabla
+      ["Valor 1", "Valor 2", "Valor 3"],
+      ["Valor 4", "Valor 5", "Valor 6"],
+    ];
+
+    const result = await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range,
+      valueInputOption: "RAW",
+      insertDataOption: "INSERT_ROWS",
+      resource: {
+        values,
+      },
+    });
+
+    console.log(`${result.updates.updatedRows} filas insertadas.`);
+
+    //res.status(200).json({ data: product });
+  } catch (error) {
+    res.status(505).json({ message: "Error del servidor", error });
+    console.log(error);
+  }
+}; */
