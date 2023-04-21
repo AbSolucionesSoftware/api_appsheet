@@ -5,9 +5,9 @@ const stripe = Stripe(process.env.LLAVE_SECRETA_STRIPE);
 
 payCtrl.createProduct = async (req, res) => {
   try {
-    const { name, amount, currency } = req.query;
+    const { name, amount, currency } = req.body;
     console.log(name);
-    if(!name || !amount || !currency) throw new Error("Faltan campos obligatorios")
+    if(!name || !amount || !currency) throw new Error("Faltan campos obligatorios");
     const product = await stripe.products.create({
       name,
       default_price_data: {
